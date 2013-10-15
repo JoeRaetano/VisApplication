@@ -17,6 +17,10 @@ import java.awt.image.BufferedImage;
 import javax.swing.JPanel;
 
 public class VisPanel extends JPanel implements MouseListener, MouseMotionListener, ComponentListener {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private float xValues[], yValues[];
 	private int xPoints[], yPoints[];
 	private float maxX, minX, maxY, minY;
@@ -68,7 +72,7 @@ public class VisPanel extends JPanel implements MouseListener, MouseMotionListen
 			}
 		}
 		
-		offscreenImage = null;
+		setOffscreenImage(null);
 		layoutPlot();
 		calculatePoints();
 		repaint();
@@ -228,7 +232,7 @@ public class VisPanel extends JPanel implements MouseListener, MouseMotionListen
 
 	@Override
 	public void componentResized(ComponentEvent e) {
-		offscreenImage = null;
+		setOffscreenImage(null);
 		layoutPlot();
 		calculatePoints();
 		repaint();
@@ -244,5 +248,13 @@ public class VisPanel extends JPanel implements MouseListener, MouseMotionListen
 
 	@Override
 	public void componentHidden(ComponentEvent e) {
+	}
+
+	public BufferedImage getOffscreenImage() {
+		return offscreenImage;
+	}
+
+	public void setOffscreenImage(BufferedImage offscreenImage) {
+		this.offscreenImage = offscreenImage;
 	}
 }
